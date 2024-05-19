@@ -16,7 +16,10 @@ Gerenciamento de Usuários:
 
 **Requisitos**
 Java JDK 17
+
 Maven
+
 MySQL
+
 DBeaver 
 
