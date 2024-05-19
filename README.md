@@ -4,7 +4,8 @@
 
 Este projeto é uma aplicação Spring Boot que gerencia usuários e clientes, permitindo operações CRUD (Create, Read, Update, Delete). A aplicação conecta-se a um banco de dados MySQL e está estruturada de forma a facilitar a escalabilidade e a manutenção.
 
-*Funcionalidades*
+**Funcionalidades**
+
 Gerenciamento de Usuários:
 
 - Criação, leitura, atualização e exclusão de usuários.
