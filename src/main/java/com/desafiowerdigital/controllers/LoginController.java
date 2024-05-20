@@ -20,12 +20,12 @@ public class LoginController {
     private LoginService loginService;
 
     @PostMapping("") 
-    public ResponseEntity<Object> obterUsuarios(@RequestBody Login login) {
+    public ResponseEntity<Object> logarUsuarios(@RequestBody Login login) {
         boolean usuarioLogado = loginService.login(login.getEmail(), login.getSenha());
         if(usuarioLogado == true) {
             return new ResponseEntity<>("Usuário logado com sucesso", HttpStatus.OK);
         }
-        return new ResponseEntity<>("Login inválido", HttpStatus.OK);
+        return new ResponseEntity<>("Login inválido", HttpStatus.UNAUTHORIZED);
     }
 
 }
