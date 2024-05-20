@@ -58,7 +58,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"nome\": \"Jorge\",\r\n        \"email\": \"jorge@gmail.com\",\r\n        \"senha\": \"123456\"\r\n    }",
+							"raw": "    {\r\n        \"nome\": \"Andressa Souza Marques\",\r\n        \"email\": \"andressamarques.biotec@gmail.com\",\r\n        \"senha\": \"123456\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -196,7 +196,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"nome\": \"Jorge 2\",\r\n        \"idade\": \"20\",\r\n        \"cidade\": \"Salvador\"\r\n    }",
+							"raw": "    {\r\n        \"nome\": \"Andressa Souza Marques\",\r\n        \"idade\": \"20\",\r\n        \"cidade\": \"Salvador\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -225,7 +225,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "    {\r\n        \"nome\": \"Jorge Dono da Gata Cinza\",\r\n        \"idade\": \"20\",\r\n        \"cidade\": \"Salvador\"\r\n    }",
+							"raw": "    {\r\n        \"nome\": \"Andressa Souza Marques\",\r\n        \"idade\": \"20\",\r\n        \"cidade\": \"Salvador\"\r\n    }",
 							"options": {
 								"raw": {
 									"language": "json"
