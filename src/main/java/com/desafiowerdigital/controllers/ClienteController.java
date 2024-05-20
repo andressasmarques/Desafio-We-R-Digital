@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.desafiowerdigital.models.Cliente;
-import com.desafiowerdigital.services.UsuarioService;
+import com.desafiowerdigital.services.ClienteService;
 
 @RestController
 @RequestMapping("/api/cliente")
@@ -42,14 +42,14 @@ public class ClienteController {
 
     @PutMapping("{id}")
     public ResponseEntity<Object> atualizarCliente(@PathVariable("id") Long id, @RequestBody Cliente cliente) {
-        Cliente cliente = clienteService.atualizarCliente(id, cliente);
-        if(cliente != null) return new ResponseEntity<>(clienteService.atualizarCliente(id, cliente), HttpStatus.OK);
+        Cliente clienteAtualizado = clienteService.atualizarCliente(id, cliente);
+        if(cliente != null) return new ResponseEntity<>(clienteService.atualizarCliente(id, clienteAtualizado), HttpStatus.OK);
 
         return new ResponseEntity<>("Nenhum cliente foi encontrado", HttpStatus.OK);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Object> obterClienteIdade(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> deletarCliente(@PathVariable("id") Long id) {
         boolean foiDeletado = clienteService.deletarCliente(id);
         if(foiDeletado) return new ResponseEntity<>(foiDeletado, HttpStatus.OK);
 

@@ -10,7 +10,7 @@ Gerenciamento de Usuários:
 
 - Criação, leitura, atualização e exclusão de usuários.
 - Cada usuário possui um ID, nome, e-mail e senha.
-- Gerenciamento de Clientes:
+Gerenciamento de Clientes:
 - Criação, leitura, atualização e exclusão de clientes.
 - Cada cliente possui um ID, nome, idade e cidade.
 

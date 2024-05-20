@@ -44,9 +44,19 @@ public class ClienteService {
    public Cliente atualizarCliente(Long id, Cliente cliente) {
       try {
             cliente.setId(id);
-            boolean clienteExiste = clienteRepository.existsById(cliente.getId());
-            if(clienteExiste) {
-                return clienteRepository.save(cliente);
+            Cliente clienteAtualizar = clienteRepository.findById(cliente.getId()).get();
+            if(clienteAtualizar != null) {
+                if(cliente.getNome() != null) {
+                    clienteAtualizar.setNome(cliente.getNome());
+                }
+                if(cliente.getIdade() != null) {
+                    clienteAtualizar.setIdade(cliente.getIdade());
+                }
+                if(cliente.getCidade() != null) {
+                    clienteAtualizar.setCidade(cliente.getCidade());
+                }
+
+                return clienteRepository.save(clienteAtualizar);
             }
             return null;
         } catch (Exception e) {

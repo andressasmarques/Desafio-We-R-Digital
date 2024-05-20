@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.desafiowerdigital.models.Usuario;
 import com.desafiowerdigital.services.UsuarioService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
@@ -38,12 +40,13 @@ public class UsuarioController {
 
 
     @PostMapping("")
-    public ResponseEntity<Object> criarUsuario(@RequestBody Usuario usuario) {
+    public ResponseEntity<Object> criarUsuario(@RequestBody @Valid Usuario usuario) {
         return new ResponseEntity<>(usuarioService.criarUsuario(usuario), HttpStatus.OK);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Object> atualizarUsuario(@PathVariable("id") Long id, @RequestBody Usuario usuario) {
+    public ResponseEntity<Object> atualizarUsuario(@PathVariable("id") Long id, @RequestBody @Valid Usuario usuario) {
+
         Usuario usr = usuarioService.atualizarUsuario(id, usuario);
         if(usr != null) return new ResponseEntity<>(usuarioService.atualizarUsuario(id, usuario), HttpStatus.OK);
 
@@ -51,7 +54,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Object> obterUsuarioIdade(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> deletearUsuario(@PathVariable("id") Long id) {
         boolean foiDeletado = usuarioService.deletarUsuario(id);
         if(foiDeletado) return new ResponseEntity<>(foiDeletado, HttpStatus.OK);
 

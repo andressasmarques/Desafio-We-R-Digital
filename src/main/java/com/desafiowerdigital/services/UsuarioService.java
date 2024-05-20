@@ -7,12 +7,15 @@ import org.springframework.stereotype.Service;
 
 import com.desafiowerdigital.models.Usuario;
 import com.desafiowerdigital.repository.UsuarioRepository;
+import com.desafiowerdigital.utils.CriptografarSenha;
 
 @Service
 public class UsuarioService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;
+
+    private final CriptografarSenha criptografarSenha = new CriptografarSenha();
 
 
     public ArrayList<Usuario> obterUsuarios() {
@@ -35,6 +38,8 @@ public class UsuarioService {
 
     public Usuario criarUsuario(Usuario usuario) {
         try {
+            String senha = criptografarSenha.criptografar(usuario.getSenha());
+            usuario.setSenha(senha);
             return usuarioRepository.save(usuario);
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,7 +61,9 @@ public class UsuarioService {
                 } 
 
                 if (usuario.getSenha() != null) {
-                    usr.setSenha(usuario.getSenha());
+                    String senha = criptografarSenha.criptografar(usuario.getSenha());
+                    usr.setSenha(senha);
+                    System.out.println(senha);
                 } 
 
                 return usuarioRepository.save(usr);
