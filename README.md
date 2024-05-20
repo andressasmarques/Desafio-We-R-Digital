@@ -26,4 +26,3 @@ Para executar e utilizar a aplicação Desafio We-R-Digital, são necessários o
 **Postman Collection:**
 Existe uma coleção Postman que está disponível na pasta do projeto, fornecendo endpoints pré-configurados para testar e interagir com a aplicação.
 
-Este projeto oferece uma solução robusta e flexível para o gerenciamento de usuários e clientes, com foco na simplicidade, eficiência e manutenibilidade.
