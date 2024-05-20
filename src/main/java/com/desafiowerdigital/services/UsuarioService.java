@@ -1,14 +1,21 @@
 package com.desafiowerdigital.services;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
 
 import com.desafiowerdigital.models.Usuario;
+import com.desafiowerdigital.models.dto.UsuarioDTO;
 import com.desafiowerdigital.repository.UsuarioRepository;
 import com.desafiowerdigital.utils.CriptografarSenha;
 
+@Configuration
 @Service
 public class UsuarioService {
 
@@ -17,37 +24,46 @@ public class UsuarioService {
 
     private final CriptografarSenha criptografarSenha = new CriptografarSenha();
 
+    @Bean
+    ModelMapper modelMapper() {
+       return new ModelMapper();
+    }
 
-    public ArrayList<Usuario> obterUsuarios() {
+
+    public List<UsuarioDTO> obterUsuarios() {
         try {
-            return (ArrayList<Usuario>) usuarioRepository.findAll();
+            ArrayList<Usuario> usuarios = (ArrayList<Usuario>) usuarioRepository.findAll();
+            return usuarios.stream().map(usuario -> modelMapper().map(usuario, UsuarioDTO.class)).collect(Collectors.toList());
+
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public Usuario obterUsuario(Long id) {
+    public UsuarioDTO obterUsuario(Long id) {
         try {
-            return usuarioRepository.findById(id).get();
+            Usuario usuario = usuarioRepository.findById(id).get();
+            return modelMapper().map(usuario, UsuarioDTO.class);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public Usuario criarUsuario(Usuario usuario) {
+    public UsuarioDTO criarUsuario(Usuario usuario) {
         try {
             String senha = criptografarSenha.criptografar(usuario.getSenha());
             usuario.setSenha(senha);
-            return usuarioRepository.save(usuario);
+            Usuario usrSalvo = usuarioRepository.save(usuario);
+            return modelMapper().map(usrSalvo, UsuarioDTO.class);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
     }
 
-    public Usuario atualizarUsuario(Long id, Usuario usuario) {
+    public UsuarioDTO atualizarUsuario(Long id, Usuario usuario) {
       try {
             usuario.setId(id);
             Usuario usr = usuarioRepository.findById(usuario.getId()).get();
@@ -63,10 +79,10 @@ public class UsuarioService {
                 if (usuario.getSenha() != null) {
                     String senha = criptografarSenha.criptografar(usuario.getSenha());
                     usr.setSenha(senha);
-                    System.out.println(senha);
                 } 
 
-                return usuarioRepository.save(usr);
+                Usuario usrSalvo = usuarioRepository.save(usr);
+                return modelMapper().map(usrSalvo, UsuarioDTO.class);
             }
             return null;
         } catch (Exception e) {

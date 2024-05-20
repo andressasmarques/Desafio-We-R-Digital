@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
@@ -20,7 +19,6 @@ public class Cliente {
     private String nome;
 
     @NotEmpty(message="campo idade é obrigatório")
-    @Email(message = "idade inválida")
     private String idade;
 
     @NotEmpty(message="campo cidade é obrigatório")

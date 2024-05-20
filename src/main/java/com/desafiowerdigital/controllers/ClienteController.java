@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.desafiowerdigital.models.Cliente;
 import com.desafiowerdigital.services.ClienteService;
 
+import jakarta.validation.Valid;
+
 @RestController
-@RequestMapping("/api/cliente")
+@RequestMapping("/api/clientes")
 public class ClienteController {
 
     @Autowired
@@ -36,14 +38,14 @@ public class ClienteController {
 
 
     @PostMapping("")
-    public ResponseEntity<Object> criarCliente(@RequestBody Cliente cliente) {
+    public ResponseEntity<Object> criarCliente(@RequestBody @Valid Cliente cliente) {
         return new ResponseEntity<>(clienteService.criarCliente(cliente), HttpStatus.OK);
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Object> atualizarCliente(@PathVariable("id") Long id, @RequestBody Cliente cliente) {
+    public ResponseEntity<Object> atualizarCliente(@PathVariable("id") Long id, @RequestBody @Valid Cliente cliente) {
         Cliente clienteAtualizado = clienteService.atualizarCliente(id, cliente);
-        if(cliente != null) return new ResponseEntity<>(clienteService.atualizarCliente(id, clienteAtualizado), HttpStatus.OK);
+        if(clienteAtualizado != null) return new ResponseEntity<>(clienteAtualizado, HttpStatus.OK);
 
         return new ResponseEntity<>("Nenhum cliente foi encontrado", HttpStatus.OK);
     }
@@ -51,7 +53,7 @@ public class ClienteController {
     @DeleteMapping("{id}")
     public ResponseEntity<Object> deletarCliente(@PathVariable("id") Long id) {
         boolean foiDeletado = clienteService.deletarCliente(id);
-        if(foiDeletado) return new ResponseEntity<>(foiDeletado, HttpStatus.OK);
+        if(foiDeletado) return new ResponseEntity<>("Removido com sucesso", HttpStatus.OK);
 
         return new ResponseEntity<>("Nenhum cliente foi encontrado", HttpStatus.OK);
     }

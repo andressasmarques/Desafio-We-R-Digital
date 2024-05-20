@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.desafiowerdigital.models.Usuario;
+import com.desafiowerdigital.models.dto.UsuarioDTO;
 import com.desafiowerdigital.services.UsuarioService;
 
 import jakarta.validation.Valid;
@@ -32,7 +33,7 @@ public class UsuarioController {
 
     @GetMapping("{id}")
     public ResponseEntity<Object> obterUsuario(@PathVariable("id") Long id) {
-        Usuario usr = usuarioService.obterUsuario(id);
+        UsuarioDTO usr = usuarioService.obterUsuario(id);
         if(usr != null) return new ResponseEntity<>(usr, HttpStatus.OK);
 
         return new ResponseEntity<>("Nenhum usuário foi encontrado", HttpStatus.OK);
@@ -47,8 +48,8 @@ public class UsuarioController {
     @PutMapping("{id}")
     public ResponseEntity<Object> atualizarUsuario(@PathVariable("id") Long id, @RequestBody @Valid Usuario usuario) {
 
-        Usuario usr = usuarioService.atualizarUsuario(id, usuario);
-        if(usr != null) return new ResponseEntity<>(usuarioService.atualizarUsuario(id, usuario), HttpStatus.OK);
+        UsuarioDTO usr = usuarioService.atualizarUsuario(id, usuario);
+        if(usr != null) return new ResponseEntity<>(usr, HttpStatus.OK);
 
         return new ResponseEntity<>("Nenhum usuário foi encontrado", HttpStatus.OK);
     }
@@ -56,7 +57,7 @@ public class UsuarioController {
     @DeleteMapping("{id}")
     public ResponseEntity<Object> deletearUsuario(@PathVariable("id") Long id) {
         boolean foiDeletado = usuarioService.deletarUsuario(id);
-        if(foiDeletado) return new ResponseEntity<>(foiDeletado, HttpStatus.OK);
+        if(foiDeletado) return new ResponseEntity<>("Removido com sucesso", HttpStatus.OK);
 
         return new ResponseEntity<>("Nenhum usuário foi encontrado", HttpStatus.OK);
     }

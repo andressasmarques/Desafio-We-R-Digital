@@ -14,7 +14,7 @@ public class CriptografarSenha {
     }
 
     public boolean validar(String senhaCifrada, String senha) {
-        return BCrypt.checkpw(senhaCifrada, senha);
+        return BCrypt.checkpw(senha,senhaCifrada);
     }
 
 }

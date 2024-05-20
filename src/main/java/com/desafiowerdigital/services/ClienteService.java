@@ -68,10 +68,11 @@ public class ClienteService {
     public boolean  deletarCliente(Long id) {
       try {
             boolean clienteExiste = clienteRepository.existsById(id);
-            if(clienteExiste) {
+            if(clienteExiste == true) {
                 clienteRepository.deleteById(id);
+                return true;
             }
-            return true;
+            return false;
         } catch (Exception e) {
             e.printStackTrace();
             return false;

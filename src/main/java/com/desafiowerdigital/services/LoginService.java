@@ -3,13 +3,14 @@ package com.desafiowerdigital.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.desafiowerdigital.models.Usuario;
 import com.desafiowerdigital.repository.UsuarioRepository;
 import com.desafiowerdigital.utils.CriptografarSenha;
 
-
-public class LoginController {
+@Service
+public class LoginService {
 
     @Autowired
     private UsuarioRepository usuarioRepository;

@@ -23,7 +23,7 @@ public class LoginController {
     public ResponseEntity<Object> obterUsuarios(@RequestBody Login login) {
         boolean usuarioLogado = loginService.login(login.getEmail(), login.getSenha());
         if(usuarioLogado == true) {
-            return new ResponseEntity<>(usuarioLogado, HttpStatus.OK);
+            return new ResponseEntity<>("Usuário logado com sucesso", HttpStatus.OK);
         }
         return new ResponseEntity<>("Login inválido", HttpStatus.OK);
     }
